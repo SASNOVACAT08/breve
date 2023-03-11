@@ -1,0 +1,46 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/web",
+  "projectType": "application",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "cwd": "apps/web",
+        "command": "nuxt typecheck"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "cwd": "apps/web",
+        "command": "nuxt generate"
+      },
+      "dependsOn": [
+        {
+          "target": "typecheck",
+          "projects": "self"
+        }
+      ]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "cwd": "apps/web",
+        "command": "nuxt dev"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web/**/*.{ts, vue}"]
+      }
+    }
+  },
+  "tags": []
+}

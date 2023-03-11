@@ -1,0 +1,14 @@
+name = "get"
+
+compatibility_flags = [ "formdata_parser_supports_files" ]
+
+kv_namespaces = [
+  { binding = "FILES", id = "<ignored>", preview_id = "<ignored>" }
+]
+
+[miniflare]
+routes = ["*/*"]
+kv_persist = "../data/"
+
+[build.upload]
+format = "modules"

@@ -1,0 +1,3 @@
+[miniflare.mounts]
+get = "./dist/get"
+post = "./dist/post"

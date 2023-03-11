@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "css.validate": false,
+  "i18n-ally.localesPaths": ["libs/i18n/src"],
+  "i18n-ally.keystyle": "flat",
+}

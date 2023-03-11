@@ -1,0 +1,57 @@
+{
+  "name": "workers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/workers/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["apps/workers/dist"],
+      "options": {
+        "cwd": "apps/workers",
+        "commands": ["rimraf dist", "node build.mjs"]
+      },
+      "dependsOn": [
+        {
+          "target": "typecheck",
+          "projects": "self"
+        }
+      ]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/workers",
+        "command": "miniflare"
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/workers",
+        "command": "nodemon"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/workers/**/*.{ts, js}"]
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/workers",
+        "command": "tsc --noEmit"
+      }
+    }
+  },
+  "tags": []
+}

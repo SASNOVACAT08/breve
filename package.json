@@ -1,0 +1,65 @@
+{
+  "name": "breve",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "nx run-many --target=build --parallel",
+    "dev": "nx run-many --target=dev --parallel",
+    "lint": "nx run-many --target=lint --all",
+    "commitlint": "commitlint",
+    "cz": "cz",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "postinstall": "cd apps/web && nuxt prepare",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=7.0.0"
+  },
+  "private": true,
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230307.0",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@nrwl/cli": "15.0.10",
+    "@nrwl/devkit": "15.5.0",
+    "@nrwl/nx-cloud": "latest",
+    "@nrwl/workspace": "15.0.10",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@^8.0.0-beta.7-27893843.b72135e",
+    "@nuxtjs/tailwindcss": "^6.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "commitizen": "^4.2.6",
+    "cz-conventional-changelog": "^3.3.0",
+    "daisyui": "^2.51.3",
+    "esbuild": "^0.17.11",
+    "esbuild-plugin-copy": "^2.1.0",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "lint-staged": "^13.1.0",
+    "miniflare": "^2.12.1",
+    "nodemon": "^2.0.20",
+    "nuxt": "^3.2.3",
+    "nuxt-icon": "^0.3.2",
+    "nx": "15.0.10",
+    "prettier": "^2.6.2",
+    "rimraf": "^4.1.2",
+    "typescript": "~4.8.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,vue}": [
+      "eslint"
+    ]
+  },
+  "dependencies": {
+    "husky": "^8.0.3"
+  }
+}
