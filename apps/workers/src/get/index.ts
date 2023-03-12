@@ -13,9 +13,8 @@ export default {
     const metadataOnly = url.searchParams.get('metadata_only')
     if (!id) return responseJson(400, { error: 'Missing id' })
     const { value, metadata } = await env.FILES.getWithMetadata(id, { cacheTtl: 3600, type: 'arrayBuffer' })
-    console.log('metadata', metadata, value)
-    if (metadataOnly) return responseJson(200, { ...(metadata as object) })
     if (!value) return responseJson(404, { error: 'Not found' })
+    if (metadataOnly) return responseJson(200, { ...(metadata as object) })
     const { type } = metadata as { type: string; name: string }
     return new Response(value, {
       status: 200,

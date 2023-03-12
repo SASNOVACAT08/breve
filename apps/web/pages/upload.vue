@@ -14,13 +14,21 @@ const data = reactive({
 })
 
 function uploadFile(event: any) {
+  const file = event.target.files[0]
+  const size = file.size
+  if (size > 2 * 1024 * 1024) {
+    alert('File is too big!')
+    event.target.value = ''
+    return
+  }
+
   data.file = event.target.files[0]
 }
 
 async function upload() {
   if (!data.file) return needToChooseAFile()
   state.isUploading = true
-  const fileContent = await postFile(data.file)
+  const fileContent = await postFile(data.file, data.duration)
   state.isUploading = false
   data.id = fileContent.id
 }

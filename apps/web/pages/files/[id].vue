@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getFile } from '@gateway/files'
 
+const router = useRouter()
 const route = useRoute()
 
 const state = reactive({
@@ -18,11 +19,15 @@ const data = reactive({
 async function getMetadata() {
   const id = route.params.id
   if (!id) return
-  const metadata = await getFile(route.params.id as string, true)
-  data.name = metadata.name
-  data.size = metadata.size
-  data.type = metadata.type
-  data.expiration = metadata.expiration
+  try {
+    const metadata = await getFile(id as string, true)
+    data.name = metadata.name
+    data.size = metadata.size
+    data.type = metadata.type
+    data.expiration = metadata.expiration
+  } catch {
+    router.push('/404')
+  }
 }
 
 async function downloadFile() {
@@ -39,11 +44,11 @@ async function downloadFile() {
 }
 
 const hours = computed(() => {
-  return Math.floor((state.timeBeforeDelete % 3600) / 3600)
+  return Math.floor(state.timeBeforeDelete / 60 / 60)
 })
 
 const minutes = computed(() => {
-  return Math.floor((state.timeBeforeDelete % 3600) / 60)
+  return Math.floor(state.timeBeforeDelete / 60) % 60
 })
 
 const seconds = computed(() => {
@@ -63,7 +68,7 @@ onMounted(async () => {
   await getMetadata()
   state.isLoadingMetadata = false
   const now = Date.now()
-  const expiration = data.expiration * 1000
+  const expiration = data.expiration
   state.timeBeforeDelete = Math.floor((expiration - now) / 1000)
   const interval = setInterval(() => {
     state.timeBeforeDelete--

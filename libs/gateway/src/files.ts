@@ -6,9 +6,10 @@ export const getFile = async (id: string, onlyMetadata = false) => {
   return onlyMetadata ? response.json() : response.blob()
 }
 
-export const postFile = async (file: File) => {
+export const postFile = async (file: File, duration: number) => {
   const formData = new FormData()
   formData.append('file', file)
+  formData.append('expiration', duration.toString())
   const response = await workers.postFornData('/upload', formData)
   return response.json()
 }
