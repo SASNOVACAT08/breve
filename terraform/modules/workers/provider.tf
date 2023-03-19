@@ -4,9 +4,7 @@ terraform {
       source = "cloudflare/cloudflare"
     }
   }
-}
 
-provider "cloudflare" {
   cloud {
     organization = "Ruben08"
 

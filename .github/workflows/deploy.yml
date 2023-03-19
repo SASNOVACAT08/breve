@@ -38,6 +38,14 @@ jobs:
         working-directory: terraform
         run: terraform init
 
+      - name: Terraform variables
+        run: |
+          cat > pipeline.tfvars <<EOF
+          account_id = "${{ secrets.ACCOUNT_ID }}"
+          project_name = "breve"
+          kv_namespace = "Blob"
+          EOF
+
       - name: Terraform Apply
         working-directory: terraform
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var-file=pipeline.tfvars
