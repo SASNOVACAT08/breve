@@ -10,7 +10,7 @@ resource "cloudflare_worker_script" "get_file" {
   module     = true
 
   kv_namespace_binding {
-    name         = "FILES"
+    name         = var.kv_namespace
     namespace_id = cloudflare_workers_kv_namespace.kv_namespace.id
   }
 }
@@ -22,7 +22,7 @@ resource "cloudflare_worker_script" "post_file" {
   module     = true
 
   kv_namespace_binding {
-    name         = "FILES"
+    name         = var.kv_namespace
     namespace_id = cloudflare_workers_kv_namespace.kv_namespace.id
   }
 }

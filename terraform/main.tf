@@ -1,3 +1,19 @@
+terraform {
+  required_providers {
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+    }
+  }
+
+  cloud {
+    organization = "Ruben08"
+
+    workspaces {
+      name = "breve"
+    }
+  }
+}
+
 module "cloudflare_workers" {
   source       = "./modules/workers"
   account_id   = var.account_id

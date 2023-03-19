@@ -1,6 +1,6 @@
 name = "post"
 
-compatibility_flags = [ "formdata_parser_supports_files" ]
+compatibility_date = "2023-03-19"
 
 kv_namespaces = [
   { binding = "Blob", id = "<ignored>", preview_id = "<ignored>" }

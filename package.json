@@ -47,7 +47,8 @@
     "nx": "15.0.10",
     "prettier": "^2.6.2",
     "rimraf": "^4.1.2",
-    "typescript": "~4.8.2"
+    "typescript": "~4.8.2",
+    "wrangler": "^2.12.3"
   },
   "config": {
     "commitizen": {

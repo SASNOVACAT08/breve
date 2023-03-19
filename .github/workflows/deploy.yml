@@ -37,6 +37,9 @@ jobs:
       - name: Terraform Init
         working-directory: terraform
         run: terraform init
+        env:
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
 
       - name: Terraform variables
         working-directory: terraform
@@ -50,3 +53,7 @@ jobs:
       - name: Terraform Apply
         working-directory: terraform
         run: terraform apply -auto-approve -var-file=pipeline.tfvars
+
+      - name: Deploy to Cloudflare Pages
+        working-directory: apps/web
+        run: npx wrangler pages publish dist --project-name breve

@@ -4,12 +4,4 @@ terraform {
       source = "cloudflare/cloudflare"
     }
   }
-
-  cloud {
-    organization = "Ruben08"
-
-    workspaces {
-      name = "breve"
-    }
-  }
 }
