@@ -2,7 +2,7 @@ import { generateId } from '@utils/generate'
 import { responseJson } from '@utils/response'
 
 interface Env {
-  FILES: KVNamespace
+  Blob: KVNamespace
 }
 
 export default {
@@ -18,7 +18,7 @@ export default {
     console.log(file, file.name, file.type, file.size)
     const id = generateId()
     const expirationTime = [60, 120, 180].includes(Number(expiration)) ? Number(expiration) : 60
-    await env.FILES.put(id, fileArrayBuffer, {
+    await env.Blob.put(id, fileArrayBuffer, {
       expirationTtl: expirationTime * 60,
       metadata: {
         name: file.name,

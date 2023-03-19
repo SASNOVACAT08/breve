@@ -3,7 +3,7 @@ name = "get"
 compatibility_flags = [ "formdata_parser_supports_files" ]
 
 kv_namespaces = [
-  { binding = "FILES", id = "<ignored>", preview_id = "<ignored>" }
+  { binding = "Blob", id = "<ignored>", preview_id = "<ignored>" }
 ]
 
 [miniflare]

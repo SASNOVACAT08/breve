@@ -38,7 +38,7 @@ async function downloadFile() {
   const a = document.createElement('a')
   document.body.append(a)
   a.href = url
-  a.download = data.name
+  a.download = data.name as unknown as string
   a.click()
   window.URL.revokeObjectURL(url)
 }

@@ -6,7 +6,13 @@ class Wrapper {
   }
 
   async get(path: string, headers?: Record<string, string>) {
-    return fetch(`${this.baseUri}${path}`, {
+    let uri = ''
+    if (path.includes('https://') || path.includes('http://')) {
+      uri = path
+    } else {
+      uri = `${this.baseUri}${path}`
+    }
+    return fetch(uri, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -16,7 +22,13 @@ class Wrapper {
   }
 
   async post<T>(path: string, body: T, headers?: Record<string, string>) {
-    return fetch(`${this.baseUri}${path}`, {
+    let uri = ''
+    if (path.includes('https://') || path.includes('http://')) {
+      uri = path
+    } else {
+      uri = `${this.baseUri}${path}`
+    }
+    return fetch(uri, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +39,13 @@ class Wrapper {
   }
 
   async postFornData(path: string, body: FormData, headers?: Record<string, string>) {
-    return fetch(`${this.baseUri}${path}`, {
+    let uri = ''
+    if (path.includes('https://') || path.includes('http://')) {
+      uri = path
+    } else {
+      uri = `${this.baseUri}${path}`
+    }
+    return fetch(uri, {
       method: 'POST',
       headers: {
         ...headers,
