@@ -14,6 +14,11 @@ terraform {
   }
 }
 
+provider "cloudflare" {
+  email   = var.cloudflare_email
+  api_key = var.cloudflare_api_key
+}
+
 module "cloudflare_workers" {
   source       = "./modules/workers"
   account_id   = var.account_id

@@ -37,9 +37,6 @@ jobs:
       - name: Terraform Init
         working-directory: terraform
         run: terraform init
-        env:
-          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
-          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
 
       - name: Terraform variables
         working-directory: terraform
@@ -48,6 +45,8 @@ jobs:
           account_id = "${{ secrets.ACCOUNT_ID }}"
           project_name = "breve"
           kv_namespace = "Blob"
+          cloudflare_email = "${{ secrets.CLOUDFLARE_EMAIL }}"
+          cloudflare_api_key = "${{ secrets.CLOUDFLARE_API_KEY }}"
           EOF
 
       - name: Terraform Apply
