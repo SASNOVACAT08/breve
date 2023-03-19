@@ -56,3 +56,5 @@ jobs:
       - name: Deploy to Cloudflare Pages
         working-directory: apps/web
         run: npx wrangler pages publish dist --project-name breve
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
