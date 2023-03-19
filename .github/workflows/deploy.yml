@@ -39,6 +39,7 @@ jobs:
         run: terraform init
 
       - name: Terraform variables
+        working-directory: terraform
         run: |
           cat > pipeline.tfvars <<EOF
           account_id = "${{ secrets.ACCOUNT_ID }}"
