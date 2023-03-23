@@ -16,10 +16,11 @@ resource "cloudflare_worker_script" "get_file" {
 }
 
 resource "cloudflare_worker_script" "post_file" {
-  account_id = var.account_id
-  name       = "upload"
-  content    = file("../apps/workers/dist/post/index.js")
-  module     = true
+  account_id         = var.account_id
+  name               = "upload"
+  content            = file("../apps/workers/dist/post/index.js")
+  module             = true
+  compatibility_date = "2023-03-23"
 
   kv_namespace_binding {
     name         = var.kv_namespace
